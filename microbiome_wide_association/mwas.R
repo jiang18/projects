@@ -44,4 +44,25 @@ this_vc = vc[which(vc$Trait == trait & vc$Breed == breed & vc$Period == period),
 # Complete covariance matrix
 V = P*this_vc$mean_p + S*this_vc$mean_s + M*this_vc$mean_m + diag(nrow(dat))*this_vc$mean_e
 
+# Weighted linear regression
+stat = matrix(NA,ncol=4,nrow=num_asv)
+df = nrow(dat) - ncol(room) - 1
+rownames(stat) = colnames(dat)[21:(20+num_asv)]
+colnames(stat) = c("BETA","SE","T","P")
 
+L_inv = solve(t(chol(V)))
+y_adj = L_inv %*% dat[,which(colnames(dat)==trait)]
+room_adj = L_inv %*% room
+for(i in (21:(20+num_asv))) {
+	asv_adj = L_inv %*% dat[,i]
+	X_adj = cbind(asv_adj, room_adj)
+	XtX_adj = t(X_adj) %*% X_adj
+	b_hat = solve(XtX_adj, (t(X_adj) %*% y_adj))
+	b_hat_var = solve(XtX_adj)
+	stat[i-20,1] = b_hat[1]
+	stat[i-20,2] = sqrt(b_hat_var[1,1])
+	stat[i-20,3] = stat[i-20,1]/stat[i-20,2]
+	stat[i-20,4] = 2*pt(abs(stat[i-20,3]), df=df, lower.tail=F)
+}
+
+write.csv(stat,file=paste(period,breed,trait,"csv",sep="."), row.names=T,quote=F)
