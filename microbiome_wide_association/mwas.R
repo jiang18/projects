@@ -30,7 +30,7 @@ P = pen %*% t(pen)
 sire.factor = factor(dat$SireID)
 sire = table(dat$ID, sire.factor)
 # Suppose the numerator relationship matrix between sires is A
-# A = diag(dim(sire)[2])
+A = diag(dim(sire)[2])
 S = sire %*% A %*% t(sire)
 
 # Incidence matrix for room
