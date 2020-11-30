@@ -8,11 +8,14 @@ dat = dat[order(dat$ID),]
 m = read.table()
 
 # Convert estimated microbiomic values to ASV effects
-num_asv = dim(dat)[2]
-Z = scale(dat[,21:num_asv])
-# Covariance matrix for microbiome is equal to ZZ'/#asv.
+num_asv = dim(dat)[2] - 20
+dat[,21:(num_asv+20)] = log(dat[,21:(num_asv+20)]/10000+0.001)
+Z = scale(dat[,21:(num_asv+20)])
 M = Z %*% t(Z)
 asv_effect = Z %*% solve(M,m)
+
+# Covariance matrix for microbiome is equal to ZZ'/#asv.
+M = M / num_asv
 
 # Covariance matrix for pen
 pen.factor = factor(dat$Pen)
