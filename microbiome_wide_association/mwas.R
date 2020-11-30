@@ -11,7 +11,7 @@ dat = dat[order(dat$ID),]
 # from your previous model fitting
 # m = read.table()
 
-num_asv = dim(dat)[2] - 20
+num_asv = ncol(dat) - 20
 dat[,21:(num_asv+20)] = log(dat[,21:(num_asv+20)]/10000+0.001)
 Z = scale(dat[,21:(num_asv+20)])
 M = Z %*% t(Z)
@@ -30,7 +30,7 @@ P = pen %*% t(pen)
 sire.factor = factor(dat$SireID)
 sire = table(dat$ID, sire.factor)
 # Suppose the numerator relationship matrix between sires is A
-A = diag(dim(sire)[2])
+A = diag(ncol(sire))
 S = sire %*% A %*% t(sire)
 
 # Incidence matrix for room
