@@ -37,3 +37,11 @@ S = sire %*% A %*% t(sire)
 room.factor = factor(dat$Room)
 room = table(dat$ID, room.factor)
 
+# Extract VC estimates for the period-breed-trait combo
+vc = read.table("VC.txt",head=T)
+this_vc = vc[which(vc$Trait == trait & vc$Breed == breed & vc$Period == period),]
+
+# Complete covariance matrix
+V = P*this_vc$mean_p + S*this_vc$mean_s + M*this_vc$mean_m + diag(nrow(dat))*this_vc$mean_e
+
+
