@@ -13,13 +13,16 @@ dat = dat[order(dat$ID),]
 
 num_asv = ncol(dat) - 20
 dat[,21:(num_asv+20)] = log(dat[,21:(num_asv+20)]/10000+0.001)
-Z = scale(dat[,21:(num_asv+20)])
+Z = dat[,21:(num_asv+20)]
+asv_sd = apply(Z, MARGIN=2, FUN=sd)
+Z = Z[,which(asv_sd > 0)]
+Z = scale(Z)
 M = Z %*% t(Z)
 # Convert estimated microbiomic values to ASV effects
 # asv_effect = Z %*% solve(M,m)
 
 # Covariance matrix for microbiome is equal to ZZ'/#asv.
-M = M / num_asv
+M = M / ncol(Z)
 
 # Covariance matrix for pen
 pen.factor = factor(dat$Pen)
@@ -54,6 +57,9 @@ L_inv = solve(t(chol(V)))
 y_adj = L_inv %*% dat[,which(colnames(dat)==trait)]
 room_adj = L_inv %*% room
 for(i in (21:(20+num_asv))) {
+	if(asv_sd[i-20] == 0) {
+		next
+	}
 	asv_adj = L_inv %*% dat[,i]
 	X_adj = cbind(asv_adj, room_adj)
 	XtX_adj = t(X_adj) %*% X_adj
