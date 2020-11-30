@@ -87,5 +87,5 @@ summary(fit)
 
 fit = lm(y_adj~asv_adj+room_adj-1)
 summary(fit)
-# The above two summary results should have identical statistics.
-# Also, the statistics should be similar to the last row in the output table.
+# The above two summary results should have identical statistics (beta, SE, t-value, and p-value).
+# Also, the ASV regression statistics should be similar to the last row in the output table.
