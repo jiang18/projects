@@ -47,7 +47,7 @@ this_vc = vc[which(vc$Trait == trait & vc$Breed == breed & vc$Period == period),
 # Complete covariance matrix
 V = P*this_vc$mean_p + S*this_vc$mean_s + M*this_vc$mean_m + diag(nrow(dat))*this_vc$mean_e
 
-# Weighted linear regression
+# Generalized least squares
 stat = matrix(NA,ncol=4,nrow=num_asv)
 df = nrow(dat) - ncol(room) - 1
 rownames(stat) = colnames(dat)[21:(20+num_asv)]
