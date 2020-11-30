@@ -1,5 +1,9 @@
-dat = read.csv("T1.csv")
-dat = dat[which(dat$Breed.x == "LW"),]
+period = "T1"
+breed = "LW"
+trait = "ADFI"
+
+dat = read.csv(paste(period,".csv",sep=""))
+dat = dat[which(dat$Breed.x == breed),]
 # Order by ID
 dat = dat[order(dat$ID),]
 
