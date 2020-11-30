@@ -70,8 +70,9 @@ for(i in (21:(20+num_asv))) {
 	stat[i-20,3] = stat[i-20,1]/stat[i-20,2]
 	stat[i-20,4] = 2*pt(abs(stat[i-20,3]), df=df, lower.tail=F)
 }
-
 write.csv(stat,file=paste(period,breed,trait,"csv",sep="."), row.names=T,quote=F)
+summary(stat)
+head(stat[order(stat[,4]),])
 
 
 # Verify the above GLS implementation
