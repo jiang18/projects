@@ -72,3 +72,20 @@ for(i in (21:(20+num_asv))) {
 }
 
 write.csv(stat,file=paste(period,breed,trait,"csv",sep="."), row.names=T,quote=F)
+
+
+# Verify the above GLS implementation
+library(nlme)
+y = dat[,which(colnames(dat)==trait)]
+x = dat[,i]
+D = diag(V)
+R = diag(sqrt(1/D)) %*% V %*% diag(sqrt(1/D))
+R = corSymm(R[lower.tri(R)], fixed = T)
+weights = varFixed(~D)
+fit = gls(y~x+room-1, correlation = R, weights = weights)
+summary(fit)
+
+fit = lm(y_adj~asv_adj+room_adj-1)
+summary(fit)
+# The above two summary results should have identical statistics.
+# Also, the statistics should be similar to the last row in the output table.
