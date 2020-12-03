@@ -1,7 +1,7 @@
 library(qqman)
 
 # Read MMAP GWAS output
-# read.csv() or read.table()
+# read.csv() or read.table(,sep=",",head=T)
 gwas = read.csv("*.norm.add.mle.pval.slim.csv")
 manhattan(gwas, chr = "CHR", bp = "POS", p = "SNP_TSCORE_PVAL", snp = "SNPNAME", genomewideline = -log10(0.05/nrow(gwas)))
 
