@@ -12,6 +12,6 @@ manhattan(gwas, genomewideline = -log10(0.05/nrow(gwas)))
 # Interactice if X11-forwarding is enabled.
 # How to enable X11-forwarding in PuTTY: http://ocean.stanford.edu/courses/ESS141/PuTTY/
 # Alternative, save the plot in a PDF file
-pdf("filename")
+pdf("filename.pdf")
 manhattan(gwas, genomewideline = -log10(0.05/nrow(gwas)))
 dev.off()
