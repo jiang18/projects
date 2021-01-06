@@ -5,7 +5,7 @@ slices = as.numeric(d[idx,2])
 pie(slices, labels=lbls, main="Birth Weight")
 pct = round(slices*100)
 lbls = paste(lbls,pct)
-lbls = paaste(lbls,"%",sep="")
+lbls = paste(lbls,"%",sep="")
 
 dev.off()
 
