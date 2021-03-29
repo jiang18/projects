@@ -1,0 +1,5 @@
+par(mar=)
+d = read.table("50k.summary.txt",head=T)
+boxplot(d,las=2)
+abline(h=1,col="blue")
+dev.off()
