@@ -1,4 +1,4 @@
-true = read.table("sim_true.txt")
+true = read.table("sim_true.txt",sep="\t",quote="")
 dt = read.table("50k.summary.txt",head=T)
 names(dt) = true[,1]
 
