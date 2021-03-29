@@ -1,10 +1,10 @@
-true = read.table("sim_true.txt",sep="\t",quote="")
+sim_true = read.table("sim_true.txt",sep="\t",quote="")
 dt = read.table("50k.summary.txt",head=T)
-names(dt) = true[,1]
+names(dt) = sim_true[,1]
 
-boxplot(dt,las=2)
-points(1:ncol(dt), colMeans(dt), col = "red", pch=1)
-points(1:ncol(dt), true[,2], col = "blue", pch=2)
-abline(h=1,col="blue")
-dev.off()
-
+par(mar=c(2,8,1,1))
+boxplot(dt, horizontal=TRUE, las=1)
+points(colMeans(dt), 1:ncol(dt), col = "red", pch=1)
+points(sim_true[,2], 1:ncol(dt), col = "blue", pch=3)
+abline(v=1,col="blue")
+legend("topright", legend=c("Estimate mean", "True value"), col=c("red", "blue"), pch=c(1,3))
