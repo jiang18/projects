@@ -6,7 +6,7 @@ use warnings;
 @ARGV == 2 or die "Two arguments needed: aipl-geno-folder and  plink-file-prefix\n";
 my ($aipl, $plink) = @ARGV;
 
-open IN,"$aipl/genotypes.imputed";
+open IN,"$aipl/genotypes.imputed" or die "Could not open $aipl/genotypes.imputed: $!\n";
 open OUT,">$plink.ped";
 while(<IN>)
 {
@@ -23,7 +23,7 @@ while(<IN>)
 close IN;
 close OUT;
 
-open IN,"../imputation/chromosome.data";
+open IN,"$aipl/chromosome.data" or die "Could not open $aipl/chromosome.data: $!\n";
 open OUT,">$plink.map";
 $_=<IN>;
 while(<IN>)
