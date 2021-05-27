@@ -48,7 +48,9 @@ Run make_sow_mats.R to create four covariance matrices for sow effects. Note tha
 ```
 perl make_litter_file sows-filename findhap-pedigree-filename output-filename
 ```
-
+The output file 
+### Constructing covariance matrices for litter effects
+Run make_litter_mats.R to create four covariance matrices for litter effects. Note that filenames need to be modified in make_litter_mats.R.
 
 ## VarComp
 ### All variance components
