@@ -31,7 +31,18 @@ Use the above command to convert each text GRM file to MMAP binary.
 perl make_sow_file.pl plink-fam-filename findhap-pedigree-filename output-filename-prefix
 ```
 Two files will be generated, .pairs and .sows.
-### 
+The .sows file will be used in the command below. 
+### Extracting focal sows' genotypes
+```
+plink --bfile all-animals-bed-filename-prefix --keep sows-filename --make-bed --out sows-plink-prefix
+```
+### BFMAP GRMs for focal sows only
+```
+bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file snp-info-filename --output_file sows-grm-prefix --num_threads 20
+```
+### Constructing covariance matrices for sow effects
+```
+```
 
 ## Covariance matrices for litter effects
 
