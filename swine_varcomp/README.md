@@ -17,7 +17,7 @@ perl make_snp_info.pl bim-filename snp-info-filename
 ```
 bfmap --compute_grm 1 --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
 ```
-Three GRMs (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
+Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
 
 ## Convert text GRM files to MMAP binary GRM files
 ```
@@ -32,6 +32,7 @@ perl make_sow_file.pl plink-fam-filename findhap-pedigree-filename output-filena
 ```
 Two files will be generated, .pairs and .sows.
 The .sows file will be used in the command below. 
+The .pairs file will be used by make_sow_mats.R.
 ### Extracting focal sows' genotypes
 ```
 plink --bfile all-animals-bed-filename-prefix --keep sows-filename --make-bed --out sows-plink-prefix
@@ -41,7 +42,7 @@ plink --bfile all-animals-bed-filename-prefix --keep sows-filename --make-bed --
 bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file snp-info-filename --output_file sows-grm-prefix --num_threads 20
 ```
 ### Constructing covariance matrices for sow effects
-1. Run make_sow_mats.R to create four covariance matrices for sow effects. Note that filenames need to be modified in make_sow_mats.R.
+1. Check and run make_sow_mats.R to create four covariance matrices for sow effects. Note that filenames need to be modified in make_sow_mats.R.
 2. Convert text files of covariance matrix to MMAP binary files, similar to conversion for GRMs.
 
 ## Covariance matrices for litter effects
@@ -51,10 +52,10 @@ perl make_litter_file sows-filename findhap-pedigree-filename output-filename
 ```
 The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 ### Constructing covariance matrices for litter effects
-1. Run make_litter_mats.R to create four covariance matrices for litter effects. Note that filenames need to be modified in make_litter_mats.R.
+1. Check and run make_litter_mats.R to create four covariance matrices for litter effects. Note that filenames need to be modified in make_litter_mats.R.
 2. Convert text files of covariance matrix to MMAP binary files, similar to conversion for GRMs.
 
-## Var component estimation
+## Variance component estimation
 Below are two example MMAP commands. Note that all covariance matrices (including GRMs) need to be constructed only once. Refer to [the MMAP manual](https://mmap.github.io/) to create a pedigree file (--ped) and phenotype files (--phenotype_filename).
 ### All variance components
 mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weight.iid.csv --trait yd --estimate_variance_components --variance_component_filename yorkshire.add.grm.bin yorkshire.foi.grm.bin yorkshire.dom.grm.bin yorkshire.sows.i.bin yorkshire.sows.a.bin yorkshire.sows.d.bin yorkshire.sows.f.bin yorkshire.litters.i.bin --variance_component_label A F D SI SA SD SF LI --file_suffix yorkshire.birth_weight --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs
