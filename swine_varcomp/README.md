@@ -8,6 +8,8 @@ perl aipl2plink findhap-geno-folder ped-filename-prefix
 plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-prefix
 ```
 
+---
+
 ## Generating text GRM files
 ### BFMAP executable
 /home/share/jjiang26/bfmap
@@ -22,11 +24,15 @@ bfmap --compute_grm 1 --binary_genotype_file bed-filename-prefix --snp_info_file
 ```
 Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
 
-## Convert text GRM files to MMAP binary GRM files
+---
+
+## Converting text GRM files to MMAP binary GRM files
 ```
 mmap --square_matrix_txt2mmap --txt_input_filename text-grm-filename --binary_output_filename mmap-grm-filename
 ```
 Use the above command to convert each text GRM file to MMAP binary.
+
+---
 
 ## Covariance matrices for sow effects
 ### Extracting offspring-sow pairs from genotyped animals
@@ -48,6 +54,8 @@ bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file s
 1. Check and run make_sow_mats.R to create four covariance matrices for sow effects. Note that filenames need to be modified in make_sow_mats.R.
 2. Convert text files of covariance matrix to MMAP binary files, similar to conversion for GRMs.
 
+---
+
 ## Covariance matrices for litter effects
 ### Extracting litter info from pedigree
 ```
@@ -57,6 +65,8 @@ The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 ### Constructing covariance matrices for litter effects
 1. Check and run make_litter_mats.R to create four covariance matrices for litter effects. Note that filenames need to be modified in make_litter_mats.R.
 2. Convert text files of covariance matrix to MMAP binary files, similar to conversion for GRMs.
+
+---
 
 ## Variance component estimation
 Below are two example MMAP commands. Note that all covariance matrices (including GRMs) need to be constructed only once. Refer to [the MMAP manual](https://mmap.github.io/) to create a pedigree file (--ped) and phenotype files (--phenotype_filename).
@@ -68,6 +78,8 @@ mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weigh
 ```
 mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weight.iid.csv --trait yd --estimate_variance_components --variance_component_filename yorkshire.add.grm.bin yorkshire.sows.i.bin yorkshire.sows.a.bin yorkshire.litters.i.bin --variance_component_label A SI SA LI --file_suffix yorkshire.birth_weight.r1 --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs
 ```
+
+---
 
 ## Todo
 ### GRM for the X chromosome and dosage compensation
