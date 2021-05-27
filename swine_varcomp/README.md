@@ -1,7 +1,7 @@
 # Converting findhap files to plink binary files
 ## Converting findhap files to plink ped/map files
 ```
-perl aipl2plink findhap-geno-folder plink-filename-prefix
+perl aipl2plink *findhap-geno-folder* plink-filename-prefix
 ```
 ## Converting plink ped/map files to bed/fam/bim files
 ```
