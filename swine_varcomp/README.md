@@ -1,25 +1,30 @@
 # Converting findhap files to plink binary files
 ## Converting findhap files to plink ped/map files
 ```
-perl aipl2plink findhap-geno-folder plink-filename-prefix
+perl aipl2plink findhap-geno-folder ped-filename-prefix
 ```
 ## Converting plink ped/map files to bed/fam/bim files
 ```
 plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-prefix
 ```
 
-# Building text GRMs
+# Generating text GRM files
 ## Creating a SNP info file for BFMAP
 ```
 perl make_snp_info.pl bim-filename snp-info-filename
 ```
 ## BFMAP GRMs
 ```
-bfmap --compute_grm 1 --binary_genotype_file plink-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
+bfmap --compute_grm 1 --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
 ```
+Three GRMs (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
 
-# MMAP matrices
-mmap --square_matrix_txt2mmap --txt_input_filename ../sow/yorkshire.sows.f.txt --binary_output_filename yorkshire.sows.f.bin
+# Convert text GRM files to MMAP binary GRM files
+```
+mmap --square_matrix_txt2mmap --txt_input_filename text-grm-filename --binary_output_filename mmap-grm-filename
+```
+Use the above command to convert each text GRM file to MMAP binary.
+
 
 # VarComp
 ## All variance components
