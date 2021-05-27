@@ -41,8 +41,7 @@ plink --bfile all-animals-bed-filename-prefix --keep sows-filename --make-bed --
 bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file snp-info-filename --output_file sows-grm-prefix --num_threads 20
 ```
 ### Constructing covariance matrices for sow effects
-```
-```
+Run make_sow_mats.R to create four covariance matrices for sow effects. Note that filenames need to be modified in make_sow_mats.R.
 
 ## Covariance matrices for litter effects
 
