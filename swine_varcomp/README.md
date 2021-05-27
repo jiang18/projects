@@ -9,6 +9,9 @@ plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-pref
 ```
 
 ## Generating text GRM files
+### BFMAP executable
+/home/share/jjiang26/bfmap
+
 ### Creating a SNP info file for BFMAP
 ```
 perl make_snp_info.pl bim-filename snp-info-filename
