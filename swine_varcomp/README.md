@@ -9,7 +9,14 @@ plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-pref
 ```
 
 # Building text GRMs
-## 
+## Creating a SNP info file for BFMAP
+```
+perl make_snp_info.pl bim-filename snp-info-filename
+```
+## BFMAP GRMs
+```
+bfmap --compute_grm 1 --binary_genotype_file plink-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
+```
 
 # MMAP matrices
 mmap --square_matrix_txt2mmap --txt_input_filename ../sow/yorkshire.sows.f.txt --binary_output_filename yorkshire.sows.f.bin
