@@ -1,3 +1,16 @@
+# Converting findhap files to plink binary files
+## Converting findhap files to plink ped/map files
+```
+perl aipl2plink findhap-geno-folder plink-filename-prefix
+```
+## Converting plink ped/map files to bed/fam/bim files
+```
+plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-prefix
+```
+
+# Building text GRMs
+## 
+
 # MMAP matrices
 mmap --square_matrix_txt2mmap --txt_input_filename ../sow/yorkshire.sows.f.txt --binary_output_filename yorkshire.sows.f.bin
 
