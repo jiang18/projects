@@ -44,6 +44,10 @@ bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file s
 Run make_sow_mats.R to create four covariance matrices for sow effects. Note that filenames need to be modified in make_sow_mats.R.
 
 ## Covariance matrices for litter effects
+### Extracting litter info from pedigree
+```
+perl make_litter_file sows-filename findhap-pedigree-filename output-filename
+```
 
 
 ## VarComp
