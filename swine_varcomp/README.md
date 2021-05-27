@@ -1,7 +1,7 @@
 ## Converting findhap files to plink binary files
 ### Converting findhap files to plink ped/map files
 ```
-perl aipl2plink findhap-geno-folder ped-filename-prefix
+perl aipl2plink.pl findhap-geno-folder ped-filename-prefix
 ```
 ### Converting plink ped/map files to bed/fam/bim files
 ```
@@ -59,7 +59,7 @@ bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file s
 ## Covariance matrices for litter effects
 ### Extracting litter info from pedigree
 ```
-perl make_litter_file sows-filename findhap-pedigree-filename output-filename
+perl make_litter_file.pl sows-filename findhap-pedigree-filename output-filename
 ```
 The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 ### Constructing covariance matrices for litter effects
