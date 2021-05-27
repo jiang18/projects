@@ -28,7 +28,7 @@ Use the above command to convert each text GRM file to MMAP binary.
 ## Covariance matrices for sow effects
 ### Extracting offspring-sow pairs from genotyped animals
 ```
-perl make_sow_file.pl plink-fam-filename findhap-pedigree-filename output-filename
+perl make_sow_file.pl plink-fam-filename findhap-pedigree-filename output-filename-prefix
 ```
 Two files will be generated, .pairs and .sows.
 ### 
