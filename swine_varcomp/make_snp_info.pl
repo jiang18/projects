@@ -1,17 +1,18 @@
 use strict;
 use warnings;
 
-@ARGV == 2 or die "bim file and output file needed\n";
+@ARGV == 2 or die "Two arguments needed: bim-filename and output-filename\n";
 
 my ($bim,$out) = @ARGV;
 
 open IN,$bim;
 open OUT,">$out";
-print OUT "SNP,group\n";
+print OUT "SNP,CHR\n";
 while(<IN>)
 {
 	my @c = split /\s+/;
-	print OUT "$c[1],1\n";
+	last if($c[0] == 19);
+	print OUT "$c[1],$c[0]\n";
 }
 close IN;
 close OUT;
