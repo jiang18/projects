@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-@ARGV == 3 or die "3 arguements needed: sows-file, ped-file, out-file\n";
+@ARGV == 3 or die "3 arguements needed: sows-filename, findhap-pedigree-filename, out-filename\n";
 
 my ($fam, $ped, $out) = @ARGV;
 
