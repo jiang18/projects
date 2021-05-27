@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-@ARGV == 3 or die "3 arguements needed: fam-file, ped-file, out-file\n";
+@ARGV == 3 or die "3 arguements needed: plink-fam-file, findhap-pedigree-file, out-file\n";
 
 my ($fam, $ped, $out) = @ARGV;
 
@@ -14,7 +14,7 @@ while(<IN>) {
 }
 close IN;
 
-open OUT,">$out";
+open OUT,">$out.pairs";
 print OUT "id sow\n";
 
 open IN, $ped;
@@ -30,7 +30,7 @@ close IN;
 close OUT;
 
 my %sow;
-open IN, $out;
+open IN, "$out.pairs";
 $_=<IN>;
 while(<IN>){
 	chomp;
@@ -41,7 +41,7 @@ close IN;
 
 print "There are ", scalar(keys %sow), " sows involved in genotypes\n";
 
-open OUT,">keep.txt";
+open OUT,">$out.sows";
 my $geno_sow; 
 for (sort {$a <=> $b} keys %sow) {
 	print OUT "0 $_\n";
