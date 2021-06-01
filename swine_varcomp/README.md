@@ -1,3 +1,5 @@
+Updated June 1, 2021
+
 ## Converting findhap files to plink binary files
 ### Converting findhap files to plink ped/map files
 ```
