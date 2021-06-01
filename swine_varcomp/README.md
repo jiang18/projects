@@ -65,7 +65,8 @@ bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file s
 ```
 perl make_litter_file.pl plink-fam-filename findhap-pedigree-filename output-filename
 ```
-The plink fam file is of all genotypes animals. 
+The plink fam file is of all genotyped animals.
+
 The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 ### Constructing covariance matrices for litter effects
 1. Check and run make_litter_mats.R to create four covariance matrices for litter effects. Note that filenames need to be modified in make_litter_mats.R.
