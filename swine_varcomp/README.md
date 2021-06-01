@@ -63,7 +63,7 @@ bfmap --compute_grm 1 --binary_genotype_file sows-plink-prefix --snp_info_file s
 ## Covariance matrices for litter effects
 ### Extracting litter info from pedigree
 ```
-perl make_litter_file.pl sow-pairs-filename findhap-pedigree-filename output-filename
+perl make_litter_file.pl plink-fam-filename findhap-pedigree-filename output-filename
 ```
 The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 ### Constructing covariance matrices for litter effects
