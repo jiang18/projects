@@ -1,12 +1,13 @@
 use strict;
 use warnings;
 
-@ARGV == 3 or die "3 arguements needed: sows-filename, findhap-pedigree-filename, out-filename\n";
+@ARGV == 3 or die "3 arguements needed: sow-pairs-filename, findhap-pedigree-filename, out-filename\n";
 
 my ($fam, $ped, $out) = @ARGV;
 
 my %geno;
 open IN, $fam;
+$_=<IN>;
 while(<IN>) {
 	chomp;
 	my @c = split /\s+/;
