@@ -3,10 +3,11 @@
 ---
 
 ## Converting findhap files to plink binary files
-### Converting findhap files (pedigree.file + genotypes.imputed + chromosome.data) to plink ped/map files
+### Converting findhap files to plink ped/map files
 ```
 perl aipl2plink.pl findhap-geno-folder ped-filename-prefix
 ```
+There must be three files in the findhap folder: pedigree.file, genotypes.imputed, and chromosome.data.
 ### Converting plink ped/map files to bed/fam/bim files
 ```
 plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-prefix
