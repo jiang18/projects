@@ -48,7 +48,7 @@ while(<IN>)
 }
 close IN;
 close OUT;
-print ".ped file has been generated\n";
+print ".ped file has been generated.\n";
 
 open IN,"$aipl/chromosome.data" or die "Could not open $aipl/chromosome.data: $!\n";
 open OUT,">$plink.map";
@@ -61,4 +61,4 @@ while(<IN>)
 }
 close IN;
 close OUT;
-print ".map file has been generated\n";
+print ".map file has been generated.\n";
