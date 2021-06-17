@@ -19,6 +19,7 @@ while(<IN>)
 	$pedigree{$c[1]} = join(" ", @c[2,3], $sex{$c[0]});
 }
 close IN;
+print "Pedigree has been parsed.\n";
 
 open IN,"$aipl/genotypes.imputed" or die "Could not open $aipl/genotypes.imputed: $!\n";
 open OUT,">$plink.ped";
@@ -35,6 +36,7 @@ while(<IN>)
 	if(defined $pedigree{$anim}) {
         	print OUT "0 $anim ", $pedigree{$anim}, " 0";
 	} else {
+		print "$anim NOT in pedigree.file. Missing parents & sex.\n";
 		print OUT "0 $anim 0 0 0 0";
 	}
         
@@ -46,6 +48,7 @@ while(<IN>)
 }
 close IN;
 close OUT;
+print ".ped file has been generated\n";
 
 open IN,"$aipl/chromosome.data" or die "Could not open $aipl/chromosome.data: $!\n";
 open OUT,">$plink.map";
@@ -58,3 +61,4 @@ while(<IN>)
 }
 close IN;
 close OUT;
+print ".map file has been generated\n";
