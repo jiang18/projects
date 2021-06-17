@@ -2,7 +2,7 @@
 
 ---
 
-## Converting findhap files to plink binary files
+## Converting findhap files (pedigree.file + genotypes.imputed + chromosome.data) to plink binary files
 ### Converting findhap files to plink ped/map files
 ```
 perl aipl2plink.pl findhap-geno-folder ped-filename-prefix
