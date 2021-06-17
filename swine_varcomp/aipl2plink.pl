@@ -32,7 +32,11 @@ while(<IN>)
 	} else {
 		$anim = $c[0];
 	}
-        print OUT "0 $anim ", $pedigree{$anim}, " 0";
+	if(defined $pedigree{$anim}) {
+        	print OUT "0 $anim ", $pedigree{$anim}, " 0";
+	} else {
+		print OUT "0 $anim 0 0 0 0";
+	}
         
 	$c[-1] =~ s/2/ 22/g;
 	$c[-1] =~ s/1/ 12/g;
