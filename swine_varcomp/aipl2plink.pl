@@ -6,18 +6,38 @@ use warnings;
 @ARGV == 2 or die "Two arguments needed: aipl-geno-folder and  plink-file-prefix\n";
 my ($aipl, $plink) = @ARGV;
 
+our %sex = ('M' => 1, 'F' => 2);
+
+my %pedigree;
+open IN,"$aipl/pedigree.file" or die "Could not open $aipl/pedigree.file: $!\n";
+while(<IN>)
+{
+        chomp;
+        my @c = split /\s+/;
+	$c[2] = 0 if($c[2] < 0);
+	$c[3] = 0 if($c[3] < 0);
+	$pedigree{$c[1]} = join(" ", @c[2,3], $sex{$c[0]});
+}
+close IN;
+
 open IN,"$aipl/genotypes.imputed" or die "Could not open $aipl/genotypes.imputed: $!\n";
 open OUT,">$plink.ped";
 while(<IN>)
 {
         chomp;
         my @c = split /\s+/;
-        my @g = split //,$c[-1];
-        print OUT "0 $c[1] 0 0 2 0";
+	my $anim;
+	if($c[0] eq '') {
+		$anim = $c[1];
+	} else {
+		$anim = $c[0];
+	}
+        print OUT "0 $anim ", $pedigree{$anim}, " 0";
         
 	$c[-1] =~ s/2/ 22/g;
 	$c[-1] =~ s/1/ 12/g;
 	$c[-1] =~ s/0/ 11/g;
+	$c[-1] =~ s/5/ 00/g; # no call
         print OUT $c[-1],"\n";
 }
 close IN;
