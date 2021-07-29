@@ -27,3 +27,9 @@ for(i in 1:nn) {
   cor[i,2] = cor(true[45001:50000,i+101], sig[45001:50000,2])
 }
 t.test(cor[,1],cor[,2], paired=T)
+
+################################
+
+i=1
+one = read.csv( paste("hsq50", i, "step.mq.gv.csv", sep=".") )
+cor(true[9001:10000,i+101], one[9001:10000,2])
