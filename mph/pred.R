@@ -1,5 +1,3 @@
-###############################
-
 true = read.csv("pheno/hsq90.gv.sim.csv")
 
 nn = 10
