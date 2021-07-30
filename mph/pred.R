@@ -17,10 +17,10 @@ cor = matrix(nrow=nn, ncol=3)
 for(i in 1:nn) {
   one = read.csv( paste("hsq50", i, "one.mq.gv.csv", sep=".") )
   cor[i,1] = cor(true[9001:10000,i+101], one[9001:10000,2])
-  main = read.csv( paste("hsq50", i, "loo.mq.gv.csv", sep=".") )
-  cor[i,2] = cor(true[9001:10000,i+101], main[9001:10000,2])
-  main = read.csv( paste("hsq50", i, "top.mq.gv.csv", sep=".") )
-  cor[i,2] = cor(true[9001:10000,i+101], main[9001:10000,2])
+  xxx = read.csv( paste("hsq50", i, "loo.mq.gv.csv", sep=".") )
+  cor[i,2] = cor(true[9001:10000,i+101], xxx[9001:10000,2])
+  xxx = read.csv( paste("hsq50", i, "top.mq.gv.csv", sep=".") )
+  cor[i,3] = cor(true[9001:10000,i+101], xxx[9001:10000,2])
 }
 t.test(cor[,1],cor[,3], paired=T)
 
