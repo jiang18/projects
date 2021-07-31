@@ -1,3 +1,4 @@
+## 10K individuals
 ### 1. Top positive VC
 base + top 1: +0.00531797 (p-value = 0.0008329)
 
@@ -31,3 +32,10 @@ top 3: +0.00274666 (0.3154)
 top 4: +0.005976823 (0.01683)
 
 top 5: +0.005713726 (0.0236)
+
+## 50K individuals
+base + top 2: +0.0042999
+
+base + top 4: +0.0049393
+
+base + top 6: +0.0050333
