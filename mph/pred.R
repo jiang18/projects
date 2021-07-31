@@ -24,5 +24,6 @@ for(i in 1:nn) {
 }
 t.test(cor[,1],cor[,3], paired=T)
 
-d = read.csv( paste("hsq50", i, "loo.mq.vc.csv", sep=".") )
-d$vc[which(abs(d$var /d$seV) > 3)]
+i = 1
+xxx = read.csv( paste("hsq50", i, "sig.mq.gv.csv", sep=".") )
+cor(true[9001:10000,i+101], xxx[9001:10000,2])
