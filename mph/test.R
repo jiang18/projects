@@ -17,6 +17,8 @@ mq = read.csv("../10k/hsq50.2.loo.mq.vc.csv")
 mq = mq[-nrow(mq),]
 
 snpvar = sw %*% mq$enrichment * (nrow(sw)/sum(mq$m))
+snpvar = snpvar[snpvar>0,]
+write.csv(snpvar, file="snpvar.txt",row.names=T, quote=F)
 
 ######################################################
 
