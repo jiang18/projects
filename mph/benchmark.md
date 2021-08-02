@@ -1,4 +1,4 @@
-## 10K individuals
+## 10K individuals (9K -> 1K) 10 replicates hsq=0.5
 ### 1. Top positive VC
 base + top 1: +0.00531797 (p-value = 0.0008329)
 
@@ -49,7 +49,7 @@ base + top 4: +0.004915248 (0.002225)
 
 base + top 5: +0.004754866 (0.005424)
 
-## 50K individuals
+## 50K individuals (45K -> 5K) hsq=0.9
 ### The 1st replicate
 base + top 2: +0.0042999
 
@@ -70,4 +70,14 @@ top 16: +0.0061823
 top 20: +0.0062765
 
 all: +0.0071768
+
+## 50K individuals (40K -> 10K) hsq=0.5
+### The 1st replicate
+top 4: +0.0064304
+
+top 6: +0.0064676
+
+top 10: +0.0077645
+
+all: +0.0078267
 
