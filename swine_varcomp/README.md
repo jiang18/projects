@@ -44,7 +44,7 @@ Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) 
 ```
 R < Interaction_matrix.R --no-save
 ```
-Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed.
+Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed. Also, change the input (additive grm and dominance grm) and putput file names accordingly.
 Three text GRM files (additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD)) will be genrated.
 
 ---
