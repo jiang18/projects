@@ -19,7 +19,7 @@ plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-pref
 ```
 plink --het --bfile bed-filename-prefix --out ibc-filename
 ```
-The above command generates a .het file. Delete the first column and convert it to a CSV file. The CSV file will be used by MMAP as a covariate file.
+The above command generates a .het file. Delete the first column and convert it to a CSV file. The CSV file will be used by MMAP as a covariate file in variance component estimation.
 ```
 --covariate_filename ibc-csv --covariates F
 ```
