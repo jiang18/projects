@@ -45,6 +45,7 @@ Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) 
 R < Interaction_matrix.R --no-save
 ```
 Three text GRM files (additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD)) will be genrated.
+
 ---
 
 ## Converting text GRM files to MMAP binary GRM files
