@@ -40,11 +40,11 @@ bfmap --compute_grm 1 --binary_genotype_file bed-filename-prefix --snp_info_file
 ```
 Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
 
-### Creating GRMs for additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD)
+### Creating GRMs for additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD) based on existed additive and dominance grms.
 ```
 R < Interaction_matrix.R --no-save
 ```
-Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed. Also, change the input (additive grm and dominance grm) and putput file names accordingly.
+Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed. Also, change the input (additive grm and dominance grm) and output file names accordingly.
 Three text GRM files (additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD)) will be genrated.
 
 ---
