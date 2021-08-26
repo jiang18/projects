@@ -17,7 +17,7 @@ close IN;
 
 open IN,"$aipl/genotypes.txt" or die "Could not open $aipl/genotypes.txt: $!\n";
 my @snp_call_rate = (0) x scalar(@snps);
-my $num_anim = 0
+my $num_anim = 0;
 open OUT,">$out.ind_call_rate.txt";
 print OUT "IID\tcallrate\n";
 while(<IN>)
