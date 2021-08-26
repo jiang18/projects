@@ -46,7 +46,7 @@ The above command generates a .het file. Delete the first column and convert it 
 ```
 perl make_snp_info.pl bim-filename snp-info-filename
 ```
-***TO BE UPDATED to use only good SNPs passing call rate threshold.***
+***TO BE UPDATED to use only good SNPs passing call rate threshold (0.95).***
 ### BFMAP GRMs
 ```
 bfmap --compute_grm 1 --min_maf 0.01 --min_hwe_pval 1e-6 --hwe_midp --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
