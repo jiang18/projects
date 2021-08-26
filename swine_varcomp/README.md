@@ -17,7 +17,7 @@ plink --chr-set 20 --file ped-filename-prefix --make-bed --out bed-filename-pref
 
 ## Inbreeding coefficients
 ```
-plink --het --bfile bed-filename-prefix --out ibc-filename
+plink --het --maf 0.01 --hwe 1e-6 midp --bfile bed-filename-prefix --out ibc-filename
 ```
 The above command generates a .het file. Delete the first column and convert it to a CSV file. The CSV file will be used by MMAP as a covariate file in variance component estimation.
 ```
@@ -36,7 +36,7 @@ perl make_snp_info.pl bim-filename snp-info-filename
 ```
 ### BFMAP GRMs
 ```
-bfmap --compute_grm 1 --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
+bfmap --compute_grm 1 --min_maf 0.01 --min_hwe_pval 1e-6 --hwe_midp --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
 ```
 Three text GRM files (additive, dominance, and first-order iteraction [A-by-A]) will be genrated.
 
