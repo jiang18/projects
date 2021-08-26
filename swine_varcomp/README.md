@@ -1,4 +1,16 @@
-*Updated August 24, 2021*
+*Updated August 26, 2021*
+
+---
+
+## Quality control
+1. Call rate
+```
+perl get_call_rate.pl findhap-geno-folder out-filename-prefix
+```
+The above commond uses findhap raw genotypes (generally named as **genotypes.txt**) to calculate SNP call rate and individual call rate. Individual call rate will be used to filter out animals in REML. SNP call rate will be used to filter out SNPs when building GRMs.
+
+2. MAF and HWE
+MAF and HWE QCs will be used by PLINK for computing inbreeding coefficients and by BFMAP for computing GRMs.
 
 ---
 
