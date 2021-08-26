@@ -9,9 +9,9 @@ open IN,"$aipl/chromosome.data" or die "Could not open $aipl/chromosome.data: $!
 $_=<IN>;
 while(<IN>)
 {
-        chomp;
-        my @c = split /\s+/;
-        push @snps, $c[0];
+	chomp;
+	my @c = split /\s+/;
+	push @snps, $c[0];
 }
 close IN;
 
@@ -22,25 +22,24 @@ open OUT,">$out.ind_call_rate.txt";
 print OUT "IID\tcallrate\n";
 while(<IN>)
 {
-    chomp;
-    my @c = split /\s+/;
-    my $anim;
-    if($c[0] eq '') {
-      $anim = $c[1];
-    } else {
-      $anim = $c[0];
-    }
-    
-    my $good = 0;
-    my @gg = split //,$c[-1];
-    for my $i (0..$#gg) {
-      if($gg[$i] =~ /0|1|2/) {
-        $good++;
-        $snp_call_rate[$i] ++;
-      }
-    }
-    $num_anim ++;
-    print OUT $anim,"\t",$good/@snps,"\n";
+	chomp;
+	my @c = split /\s+/;
+	my $anim;
+	if($c[0] eq '') {
+		$anim = $c[1];
+	} else {
+		$anim = $c[0];
+	}
+
+	my $good = 0;
+	my @gg = split //,$c[-1];
+	for my $i (0..$#gg) {
+		next if ($gg[$i] > 2);
+		$good++;
+		$snp_call_rate[$i] ++;
+	}
+	$num_anim ++;
+	print OUT $anim,"\t",$good/@snps,"\n";
 }
 close IN;
 close OUT;
@@ -48,6 +47,6 @@ close OUT;
 open OUT,">$out.snp_call_rate.txt";
 print OUT "SNP\tcallrate\n";
 for my $i (0..$#snps) {
-  print OUT $snps[$i],"\t", $snp_call_rate[$i]/$num_anim,"\n";
+	print OUT $snps[$i],"\t", $snp_call_rate[$i]/$num_anim,"\n";
 }
 close OUT;
