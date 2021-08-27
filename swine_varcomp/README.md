@@ -45,8 +45,10 @@ The above command generates a .het file. Delete the first column and convert it 
 ### Creating a SNP info file for BFMAP
 ```
 perl make_snp_info.pl bim-filename snp-info-filename
+Rscript --vanilla SNP_filtering.R <snp-info-filename> <snp_call_rate.txt filename> <output filename with filtered SNPs>
 ```
-***TO BE UPDATED to use only good SNPs passing call rate threshold (0.95).***
+Make sure R packages "dplyr" is loded befire run
+
 ### BFMAP GRMs
 ```
 bfmap --compute_grm 1 --min_maf 0.01 --min_hwe_pval 1e-6 --hwe_midp --binary_genotype_file bed-filename-prefix --snp_info_file snp-info-filename --output_file grm-filename-prefix --num_threads 20
