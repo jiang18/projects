@@ -47,7 +47,7 @@ The above command generates a .het file. Delete the first column and convert it 
 perl make_snp_info.pl bim-filename snp-info-filename
 Rscript --vanilla SNP_filtering.R <snp-info-filename> <snp_call_rate.txt filename> <output filename with filtered SNPs>
 ```
-Make sure R packages "dplyr" is loded befire run
+Make sure R packages "dplyr" is loaded before run
 
 ### BFMAP GRMs
 ```
