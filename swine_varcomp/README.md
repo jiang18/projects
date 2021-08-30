@@ -57,9 +57,9 @@ Three text GRM files (additive, dominance, and second-order interaction [A-by-A]
 
 ### Creating GRMs for additive by additive (AA), additive by dominance (AD), and  dominance by dominance (DD) based on existed additive and dominance GRMs.
 ```
-R < Interaction_matrix.R --no-save
+Rscript --vanilla Interaction_matrix.R <add.grm.txt input file> <dom.grm.txt input file> <AA.grm.txt output file>  <AD.grm.txt output file>  <DD.grm.txt output file>
 ```
-Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed. Also, change the input (additive grm and dominance grm) and output file names accordingly.
+Before run the above command, make sure R packages "fastmatrix" and "data.table" are properly installed. 
 Three text GRM files (additive by additive [AA], additive by dominance [AD], and  dominance by dominance [DD]) will be genrated.
 
 ---
