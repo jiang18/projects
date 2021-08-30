@@ -42,7 +42,7 @@ The above command generates a .het file. Delete the first column and convert it 
 ### BFMAP executable
 /home/share/jjiang26/bfmap
 
-### Creating a SNP info file for BFMAP
+### Creating a SNP info file for BFMAP and filter SNPs by removing SNPs that have call rate less than 0.95
 ```
 perl make_snp_info.pl bim-filename snp-info-filename
 Rscript --vanilla SNP_filtering.R <snp-info-filename> <snp_call_rate.txt filename> <output filename with filtered SNPs>
@@ -110,6 +110,13 @@ The output file will be used by make_litter_mats.R, e.g., yorkshire.litters.
 
 ## Variance component estimation
 Below are two example MMAP commands. Note that all covariance matrices (including GRMs) need to be constructed only once. Refer to [the MMAP manual](https://mmap.github.io/) to create a pedigree file (--ped) and phenotype files (--phenotype_filename).
+
+### Filter phenotypes by removing animals that have call rate less than 0.95
+```
+Rscript --vanilla SNP_filtering.R <phenotype-filename> <ind_call_rate.txt filename> <output phenotype filename with filtered animals>
+```
+Make sure R packages "dplyr" is loaded before run
+  
 ### All variance components
 ```
 mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weight.iid.csv --trait yd --estimate_variance_components --variance_component_filename yorkshire.add.grm.bin yorkshire.foi.grm.bin yorkshire.dom.grm.bin yorkshire.sows.i.bin yorkshire.sows.a.bin yorkshire.sows.d.bin yorkshire.sows.f.bin yorkshire.litters.i.bin --variance_component_label A F D SI SA SD SF LI --file_suffix yorkshire.birth_weight --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs --num_iterations 20
