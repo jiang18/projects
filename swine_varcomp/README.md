@@ -113,7 +113,7 @@ Below are two example MMAP commands. Note that all covariance matrices (includin
 
 ### Filter phenotypes by removing animals that have call rate less than 0.95
 ```
-Rscript --vanilla SNP_filtering.R <phenotype-filename> <ind_call_rate.txt filename> <output phenotype filename with filtered animals>
+Rscript --vanilla Animal_filtering.R <phenotype-filename> <ind_call_rate.txt filename> <output phenotype filename with filtered animals>
 ```
 Make sure R packages "dplyr" is loaded before run
   
