@@ -125,10 +125,10 @@ mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weigh
 ```
 mmap --ped yorkshire.ped.csv --phenotype_filename ../pheno/yorkshire.birth_weight.iid.csv --trait yd --estimate_variance_components --variance_component_filename yorkshire.add.grm.bin yorkshire.sows.i.bin yorkshire.sows.a.bin yorkshire.litters.i.bin --variance_component_label A SI SA LI --file_suffix yorkshire.birth_weight.r1 --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs --num_iterations 20
 ```
-### Genomic prediction (10-fold cross-validation)
+## Genomic prediction (10-fold cross-validation)
 To run the following script, make sure all folder path and file names are adjusted accordingly, and split all data evenly into 10 folds before run.
 
-## For the model that includes only additive genetic effect
+### For the model that includes only additive genetic effect
 Predicting gebv using training data
 ```
 ./SPG_BF_mmap_CV_add.sh
@@ -138,7 +138,7 @@ Compute total genetic value and correlate with adjusted phenotypes from the vali
 Rscript Pred_BF_add.R
 ```
 
-## For the model that includes all genetic effect and permnentant environmental effect
+### For the model that includes all genetic effect and permnentant environmental effect
 Predicting gebv using training data
 ```
 ./SPG_BF_mmap_CV_full.sh
