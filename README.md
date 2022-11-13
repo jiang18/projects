@@ -23,7 +23,7 @@ e
 f
 ```
 
-### Test 2.1 <a name="test2.1" />
+### Test 2.1
 ```
 a
 b
@@ -32,7 +32,7 @@ d
 e
 f
 ```
-### Test 2.2 <a name="test2.2" />
+### Test 2.2
 ```
 a
 b
