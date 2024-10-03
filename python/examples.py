@@ -32,6 +32,21 @@ kept_geno_indices = find_indices_unsorted(phen_ids, geno_ids)
 for i in range(sample_size):
     X[i,] = geno[kept_geno_indices[i], ]
 
+def standardize(matrix):
+    mean = np.mean(matrix, axis=0)
+    std = np.std(matrix, axis=0)
+    # Identify columns with non-zero standard deviation
+    non_zero_std = std != 0
+    
+    # Filter the matrix and calculate z-scores only for non-zero std columns
+    matrix_filtered = matrix[:, non_zero_std]
+    mean_filtered = mean[non_zero_std]
+    std_filtered = std[non_zero_std]
+    
+    return (matrix_filtered - mean_filtered) / std_filtered
+
+X = standardize(X)
+
 # Training and validation
 # First 3000 as training and others as validation
 
@@ -40,16 +55,17 @@ X_validation = X[3000:, ]
 y_training = y[:3000]
 y_validation = y[3000:]
 
-every = 1000
+every = 500
 
 # Linear regression
 reg = LinearRegression().fit(X_training[:, ::every], y_training)
 reg.score(X_training[:, ::every], y_training)
+reg.intercept_
 # prediction accuracy
 np.corrcoef(reg.predict(X_validation[:, ::every]), y_validation)[0, 1]
 
 # Ridge regression
-clf = RidgeCV(alphas=[1e-3, 1e-2, 1e-1, 1, 10], cv=5).fit(X_training, y_training)
+clf = RidgeCV(alphas=[1e-3]).fit(X_training, y_training)
 clf.score(X_training, y_training)
 # prediction accuracy
 np.corrcoef(clf.predict(X_validation), y_validation)[0, 1]
