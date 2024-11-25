@@ -1,7 +1,7 @@
 from pandas_plink import read_plink1_bin
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV
+from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV, LarsCV
 from sklearn.model_selection import train_test_split
 
 trait = "BF"
@@ -52,7 +52,7 @@ y0 = y
 
 # Training and validation using subset
 sample_size = 3000
-num_snps = 400
+num_snps = 500
 snp_subset = np.linspace(0, X0.shape[1]-1, num_snps, dtype=int)
 X = X0[:sample_size, snp_subset]
 y = y0[:sample_size]
@@ -60,8 +60,8 @@ y = (y - np.mean(y))/np.std(y)
 
 # Optimize alpha
 het = 0.4
-alpha_ridge = (1-het) *  X.shape[0] / (2*het * X.shape[1])
-alpha_lasso = (1-het) / (het * X.shape[1])
+alpha_ridge = (1-het) / (het / X.shape[1])
+alpha_lasso = (1-het) / X.shape[0] / (het / X.shape[1])
 
 # Initialize one array for all methods (replicates x 3 methods)
 n_replicates = 100
@@ -76,12 +76,12 @@ for i in range(n_replicates):
    correlations[i, 0] = np.corrcoef(reg.predict(X_validation), y_validation)[0, 1]
    
    # Ridge regression
-   clf = RidgeCV(alphas=np.logspace(np.log10(alpha_ridge), np.log10(alpha_ridge*1000), 100)).fit(X_training, y_training)
+   clf = RidgeCV(alphas=np.logspace(np.log10(alpha_ridge), np.log10(alpha_ridge*100), 100)).fit(X_training, y_training)
    correlations[i, 1] = np.corrcoef(clf.predict(X_validation), y_validation)[0, 1]
    
    # LASSO
-   clf = LassoCV(alphas=np.logspace(np.log10(alpha_lasso/10), np.log10(alpha_lasso*10), 100)).fit(X_training, y_training)
-   correlations[i, 2] = np.corrcoef(clf.predict(X_validation), y_validation)[0, 1]
+   # clf = LassoCV(alphas=np.logspace(np.log10(alpha_lasso/10), np.log10(alpha_lasso*10), 100)).fit(X_training, y_training)
+   # correlations[i, 2] = np.corrcoef(clf.predict(X_validation), y_validation)[0, 1]
 
 # Print mean correlations
 print("Mean correlations (Linear, Ridge, Lasso):", np.mean(correlations, axis=0))
